@@ -1,0 +1,4 @@
+.imageContainer > img:hover {
+    width: 1280px;
+    height: 720px;
+  }
