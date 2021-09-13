@@ -27,6 +27,8 @@ Route::get('users', [UsersController::class, 'index'])->name('users_index');
 
 Route::get('places', [PlacesController::class, 'index'])->name('places_index');
 
+Route::get('rating', [PlacesController::class, 'ratingIndex'])->name('rating_index');
+
 Route::group([
     'prefix' => 'photos/',
     'as' => 'photos_'
@@ -40,6 +42,7 @@ Route::group([
     'prefix' => 'places/',
     'as' => 'places'
 ], function(){
+    Route::post('rate', [PlacesController::class, 'rate'])->name('_rate');
 
     Route::group([
         'prefix' => 'create/',

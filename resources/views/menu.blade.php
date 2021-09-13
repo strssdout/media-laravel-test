@@ -4,5 +4,6 @@
         <li><a href="http://newproj.local/places/create">Создать место</a></li>
         <li><a href="http://newproj.local/photos/add">Добавить фотографию к месту</a></li>
         <li><a href="http://newproj.local/places">Все места</a></li>
+        <li><a href="http://newproj.local/rating">Рейтинг</a></li>
     </ul>
 </html>

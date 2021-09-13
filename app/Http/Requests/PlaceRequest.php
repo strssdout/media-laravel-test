@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Place;
+use App\Models\Image;
 
 class PlaceRequest extends FormRequest
 {

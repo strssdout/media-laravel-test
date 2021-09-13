@@ -13,7 +13,6 @@
                 <option value={{ $place->id }}>{{ $place->name }}</option>
                 @endforeach
             </select>
-            <input type="hidden" name="name" value="{{ $place->name }}">
             <input type="file" name="image" id="" class="@error('image') is-invalid @enderror">
             @error('image')
                 <div class="alert alert-danger"><font size="5" color="red">{{ $message }}</font></div>
