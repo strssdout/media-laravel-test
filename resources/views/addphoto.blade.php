@@ -5,7 +5,7 @@
     </head>
     <div>
         @include('menu')
-        <form action={{ route('photos_send') }} method="post" enctype="multipart/form-data">
+        <form action={{ route('images.store') }} method="post" enctype="multipart/form-data">
             @csrf
             <h1 class="center">Добавьте новую фотографию</h1>
             Город: <select name="type" id="" class="@error('type') is-invalid @enderror">

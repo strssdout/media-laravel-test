@@ -1,4 +1,4 @@
-<form action={{ route('photos_add') }} method="post" enctype="multipart/form-data">
+<form action={{ route('photos.add') }} method="post" enctype="multipart/form-data">
     @csrf
     <h1 class="center">Добавьте новую фотографию для {{$place->name}}</h1>
     <input type="hidden" name="name" value="{{ $place->name }}">

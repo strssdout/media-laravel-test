@@ -1,4 +1,4 @@
-<form action={{ route('form_send') }} method="post" enctype="multipart/form-data">
+<form action={{ route('form.send') }} method="post" enctype="multipart/form-data">
     @csrf
     Name: <input type="text" name="name" id="" class="@error('name') is-invalid @enderror" value={{ old('name') }}>
     @error('name')

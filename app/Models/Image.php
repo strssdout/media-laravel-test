@@ -12,4 +12,9 @@ class Image extends Model
     {
         return $value;
     }
+
+    public function getNameAttribute($value)
+    {
+        return $value;
+    }
 }

@@ -26,7 +26,7 @@ class Rating extends Model
 
     public function countRatingForPlace($place_id)
     {
-        $ratings = $this->where('place_id', $place_id)->get();
+        $ratings = Rating::where('place_id', $place_id)->get();
         $counter = 0;
         foreach ($ratings as $rating)
         {
@@ -40,7 +40,7 @@ class Rating extends Model
 
     public function countLikesForPlace($place_id)
     {
-        $ratings = $this->where('place_id', $place_id)->get();
+        $ratings = Rating::where('place_id', $place_id)->get();
         $counter = 0;
         foreach ($ratings as $rating)
         {
@@ -53,7 +53,7 @@ class Rating extends Model
 
     public function countDislikesForPlace($place_id)
     {
-        $ratings = $this->where('place_id', $place_id)->get();
+        $ratings = Rating::where('place_id', $place_id)->get();
         $counter = 0;
         foreach ($ratings as $rating)
         {
@@ -66,7 +66,7 @@ class Rating extends Model
 
     public function countRatingForImage($image_id)
     {
-        $ratings = $this->where('image_id', $image_id)->get();
+        $ratings = Rating::where('image_id', $image_id)->get();
         $counter = 0;
         foreach ($ratings as $rating)
         {
@@ -80,7 +80,7 @@ class Rating extends Model
 
     public function countLikesForImage($image_id)
     {
-        $ratings = $this->where('image_id', $image_id)->get();
+        $ratings = Rating::where('image_id', $image_id)->get();
         $counter = 0;
         foreach ($ratings as $rating)
         {
@@ -93,7 +93,7 @@ class Rating extends Model
 
     public function countDislikesForImage($image_id)
     {
-        $ratings = $this->where('image_id', $image_id)->get();
+        $ratings = Rating::where('image_id', $image_id)->get();
         $counter = 0;
         foreach ($ratings as $rating)
         {

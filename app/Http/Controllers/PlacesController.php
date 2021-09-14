@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Place;
 use App\Http\Requests\PlaceRequest;
-use Hamcrest\Type\IsInteger;
 use App\Models\Image;
 use App\Http\Requests\ImageRequest;
 use App\Models\Rating;
@@ -45,62 +44,22 @@ class PlacesController extends Controller
         return view('createplace');
     }
 
-    public function addPlace(PlaceRequest $req, ImageRequest $reqIm)
+    public function addPlace(PlaceRequest $req/*, ImageRequest $reqIm*/)
     {
-        $imageName = $reqIm->file('image')->storePublicly('images', 'public');
+        /*$imageName = $reqIm->file('image')->storePublicly('images', 'public');*/
         $name = $req->name;
         $type = $req->type;
         Place::create([
             'name' => $name,
             'type' => $type,
         ]);
-        $placeId = Place::where('name', $name)->first();
+        /*$placeId = Place::where('name', $name)->first();
         Image::create([
             'place_id' => $placeId->id,
             'name' => $name,
             'image' => $imageName,
-        ]);
+        ]);*/
         return redirect('places/create');
-    }
-
-    public function showAddPhoto($id)
-    {
-        $place = Place::find($id);
-        if ($place == NULL){
-            return redirect('places');
-        }
-        else return view('photoform', compact('id', 'place'));
-    }
-
-    public function addPhoto(ImageRequest $req)
-    {
-        $imageName = $req->file('image')->storePublicly('images', 'public');
-        $name = $req->name;
-        $placeId = Place::where('name', $name)->id;
-        Image::create([
-            'place_id' => $placeId,
-            'name' => $name,
-            'image' => $imageName,
-        ]);
-        return redirect('places');
-    }
-
-    public function addPhotoForm()
-    {
-        $places = Place::all();
-        return view('addphoto', compact('places'));
-    }
-
-    public function sendPhoto(ImageRequest $req)
-    {
-        $imageName = $req->file('image')->storePublicly('images', 'public');
-        $place = Place::where('id', $req->type)->first();
-        Image::create([
-            'place_id' => $place->id,
-            'name' => $place->name,
-            'image' => $imageName,
-        ]);
-        return redirect('photos/add');
     }
 
     public function rate(Request $req)
