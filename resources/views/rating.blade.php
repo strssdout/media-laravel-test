@@ -11,24 +11,20 @@
     <body>
         @foreach ($places as $place)
             <h2>Название: {{$place->name}}</h2>
-            <h2>Рейтинг места: {{$ratings->countRatingForPlace($place->id)}} (Лайков: {{$ratings->countLikesForPlace($place->id)}}, Дизлайков:{{$ratings->countDislikesForPlace($place->id)}})</h2>
+            <h2>Рейтинг места: {{$ratingPlaceLikes[$place->id] - $ratingPlaceDislikes[$place->id]}} 
+                (Лайков: {{$ratingPlaceLikes[$place->id]}}, 
+                Дизлайков:{{$ratingPlaceDislikes[$place->id]}})
+            </h2>
             <h2>Тип: {{$place->type}}</h2>
             <h2>Рейтинг фотографий:</h2>
-            @php
-            $rating = 0;
-            $ratingL = 0;
-            $ratingD = 0;
-            foreach ($images as $image)
-            {{
-                if ($image->name == $place->name)
-                {
-                    $rating = $rating + $ratings->countRatingForImage($image->id);
-                    $ratingL = $ratingL + $ratings->countLikesForImage($image->id);
-                    $ratingD = $ratingD + $ratings->countDislikesForImage($image->id);
-                }
-            }}
-            @endphp
-            <i>{{$rating}}(Лайков: {{$ratingL}}, Дизлайков: {{$ratingD}})</i>
+            @foreach ($images as $image)
+            @if ($image->place_id == $place->id)
+            <i>{{$ratingImagesLikes[$image->id] - $ratingImagesDislikes[$image->id]}}
+                (Лайков: {{$ratingImagesLikes[$image->id]}}, 
+                Дизлайков: {{$ratingImagesDislikes[$image->id]}})
+            </i>
+            @endif
+            @endforeach
         @endforeach
     </body>
 </html>

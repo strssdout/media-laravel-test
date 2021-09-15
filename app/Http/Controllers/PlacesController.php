@@ -15,11 +15,15 @@ class PlacesController extends Controller
         $place = Place::find($id);
         $images = Image::where('place_id', $place->id)->get();
         $ratings = Rating::all();
-        $rating = 0;
+        $ratingPlace = $this->countRatingForPlace($id);
+        foreach ($images as $image){
+            $ratingImagesLikes[$image->id] = $this->countLikesForImage($image->id);
+            $ratingImagesDislikes[$image->id] = $this->countDislikesForImage($image->id);
+        }
         if ($place == NULL){
             return redirect('places');
         }
-        else return view('viewplaces', compact('id', 'place', 'images', 'ratings', 'rating'));
+        else return view('viewplaces', compact('id', 'place', 'images', 'ratings', 'ratingPlace', 'ratingImagesLikes', 'ratingImagesDislikes'));
     }
 
     public function ratingIndex()
@@ -27,10 +31,18 @@ class PlacesController extends Controller
         $places = Place::all();
         $images = Image::all();
         $ratings = Rating::all();
+        foreach ($places as $place){
+            $ratingPlaceLikes[$place->id] = $this->countLikesForPlace($place->id);
+            $ratingPlaceDislikes[$place->id] = $this->countDislikesForPlace($place->id);
+        }
+        foreach ($images as $image){
+            $ratingImagesLikes[$image->id] = $this->countLikesForImage($image->id);
+            $ratingImagesDislikes[$image->id] = $this->countDislikesForImage($image->id);
+        }
         if ($places == NULL){
             return redirect('places');
         }
-        else return view('rating', compact('places', 'images', 'ratings'));
+        else return view('rating', compact('places', 'images', 'ratings', 'ratingPlaceLikes', 'ratingPlaceDislikes', 'ratingImagesLikes', 'ratingImagesDislikes'));
     }
 
     public function index()
@@ -95,5 +107,85 @@ class PlacesController extends Controller
             }
         }
         return redirect()->back();
+    }
+
+    public function countRatingForPlace($place_id)
+    {
+        $ratings = Rating::where('place_id', $place_id)->get();
+        $counter = 0;
+        foreach ($ratings as $rating)
+        {
+            if ($rating->type == 'like'){
+                $counter++;
+            }
+            else $counter--;
+        }
+        return $counter;
+    }
+
+    public function countLikesForPlace($place_id)
+    {
+        $ratings = Rating::where('place_id', $place_id)->get();
+        $counter = 0;
+        foreach ($ratings as $rating)
+        {
+            if ($rating->type == 'like'){
+                $counter++;
+            }
+        }
+        return $counter;
+    }
+
+    public function countDislikesForPlace($place_id)
+    {
+        $ratings = Rating::where('place_id', $place_id)->get();
+        $counter = 0;
+        foreach ($ratings as $rating)
+        {
+            if ($rating->type == 'dislike'){
+                $counter++;
+            }
+        }
+        return $counter;
+    }
+
+    public function countRatingForImage($image_id)
+    {
+        $ratings = Rating::where('image_id', $image_id)->get();
+        $counter = 0;
+        foreach ($ratings as $rating)
+        {
+            if ($rating->type == 'like'){
+                $counter++;
+            }
+            else $counter--;
+        }
+        return $counter;
+    }
+
+    public function countLikesForImage($image_id)
+    {
+        $ratings = Rating::where('image_id', $image_id)->get();
+        $counter = 0;
+        foreach ($ratings as $rating)
+        {
+            if ($rating->type == 'like'){
+                $counter++;
+            }
+        }
+        return $counter;
+    }
+
+    public function countDislikesForImage($image_id)
+    {
+        $ratings = Rating::where('image_id', $image_id)->get();
+        $counter = 0;
+        foreach ($ratings as $rating)
+        {
+            if ($rating->type == 'dislike'){
+                $counter++;
+            }
+        }
+        return $counter;
     }
 }

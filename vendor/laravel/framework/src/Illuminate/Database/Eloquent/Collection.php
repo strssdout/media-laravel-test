@@ -20,85 +20,85 @@ class Collection extends BaseCollection implements QueueableCollection
      * @param  mixed  $default
      * @return \Illuminate\Database\Eloquent\Model|static|null
      */
-    public function countRatingForPlace($place_id)
-    {
-        $ratings = Rating::where('place_id', $place_id)->get();
-        $counter = 0;
-        foreach ($ratings as $rating)
-        {
-            if ($rating->type == 'like'){
-                $counter++;
-            }
-            else $counter--;
-        }
-        return $counter;
-    }
+    // public function countRatingForPlace($place_id)
+    // {
+    //     $ratings = Rating::where('place_id', $place_id)->get();
+    //     $counter = 0;
+    //     foreach ($ratings as $rating)
+    //     {
+    //         if ($rating->type == 'like'){
+    //             $counter++;
+    //         }
+    //         else $counter--;
+    //     }
+    //     return $counter;
+    // }
 
-    public function countLikesForPlace($place_id)
-    {
-        $ratings = Rating::where('place_id', $place_id)->get();
-        $counter = 0;
-        foreach ($ratings as $rating)
-        {
-            if ($rating->type == 'like'){
-                $counter++;
-            }
-        }
-        return $counter;
-    }
+    // public function countLikesForPlace($place_id)
+    // {
+    //     $ratings = Rating::where('place_id', $place_id)->get();
+    //     $counter = 0;
+    //     foreach ($ratings as $rating)
+    //     {
+    //         if ($rating->type == 'like'){
+    //             $counter++;
+    //         }
+    //     }
+    //     return $counter;
+    // }
 
-    public function countDislikesForPlace($place_id)
-    {
-        $ratings = Rating::where('place_id', $place_id)->get();
-        $counter = 0;
-        foreach ($ratings as $rating)
-        {
-            if ($rating->type == 'dislike'){
-                $counter++;
-            }
-        }
-        return $counter;
-    }
+    // public function countDislikesForPlace($place_id)
+    // {
+    //     $ratings = Rating::where('place_id', $place_id)->get();
+    //     $counter = 0;
+    //     foreach ($ratings as $rating)
+    //     {
+    //         if ($rating->type == 'dislike'){
+    //             $counter++;
+    //         }
+    //     }
+    //     return $counter;
+    // }
 
-    public function countRatingForImage($image_id)
-    {
-        $ratings = Rating::where('image_id', $image_id)->get();
-        $counter = 0;
-        foreach ($ratings as $rating)
-        {
-            if ($rating->type == 'like'){
-                $counter++;
-            }
-            else $counter--;
-        }
-        return $counter;
-    }
+    // public function countRatingForImage($image_id)
+    // {
+    //     $ratings = Rating::where('image_id', $image_id)->get();
+    //     $counter = 0;
+    //     foreach ($ratings as $rating)
+    //     {
+    //         if ($rating->type == 'like'){
+    //             $counter++;
+    //         }
+    //         else $counter--;
+    //     }
+    //     return $counter;
+    // }
 
-    public function countLikesForImage($image_id)
-    {
-        $ratings = Rating::where('image_id', $image_id)->get();
-        $counter = 0;
-        foreach ($ratings as $rating)
-        {
-            if ($rating->type == 'like'){
-                $counter++;
-            }
-        }
-        return $counter;
-    }
+    // public function countLikesForImage($image_id)
+    // {
+    //     $ratings = Rating::where('image_id', $image_id)->get();
+    //     $counter = 0;
+    //     foreach ($ratings as $rating)
+    //     {
+    //         if ($rating->type == 'like'){
+    //             $counter++;
+    //         }
+    //     }
+    //     return $counter;
+    // }
 
-    public function countDislikesForImage($image_id)
-    {
-        $ratings = Rating::where('image_id', $image_id)->get();
-        $counter = 0;
-        foreach ($ratings as $rating)
-        {
-            if ($rating->type == 'dislike'){
-                $counter++;
-            }
-        }
-        return $counter;
-    }
+    // public function countDislikesForImage($image_id)
+    // {
+    //     $ratings = Rating::where('image_id', $image_id)->get();
+    //     $counter = 0;
+    //     foreach ($ratings as $rating)
+    //     {
+    //         if ($rating->type == 'dislike'){
+    //             $counter++;
+    //         }
+    //     }
+    //     return $counter;
+    // }
 
     public function find($key, $default = null)
     {
