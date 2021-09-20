@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
-@include('menu')
+
     <head>
-            <style>
-                h1 {text-align: center;}
-                div {text-align: center;}
-            </style>
-        <h1 class="center">Рейтинг для всех мест и их фотографий</h1>
+        <div>
+            @include('loginform')
+        </div>
+        @include('menu')
+        <style>
+            h3 {text-align: center;}
+            div {text-align: center;}
+        </style>
+        <h3 class="center">Рейтинг для всех мест и их фотографий</h1>
     </head>
     <body>
         @foreach ($places as $place)
@@ -16,7 +20,10 @@
                 Дизлайков:{{$ratingPlaceDislikes[$place->id]}})
             </h2>
             <h2>Тип: {{$place->type}}</h2>
-            <h2>Рейтинг фотографий:</h2>
+            <h2>Рейтинг фотографий: @if ($images->where('place_id', $place->id)->first()==NULL)
+                <i>фотографий не найдено</i>
+                @endif
+            </h2>
             @foreach ($images as $image)
             @if ($image->place_id == $place->id)
             <i>{{$ratingImagesLikes[$image->id] - $ratingImagesDislikes[$image->id]}}

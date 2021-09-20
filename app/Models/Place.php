@@ -9,15 +9,21 @@ class Place extends Model
 {
     protected $guarded = [];
 
+    //Get id attribute by $place->id;
+
     public function getIdAttribute($value)
     {
         return $value;
     }
 
+    //Get name attribute by $place->id;
+
     public function getNameAttribute($value)
     {
         return $value;
     }
+
+    //Comparing place with images
 
     public function images()
     {

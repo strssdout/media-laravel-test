@@ -1,5 +1,6 @@
 <?php
 
+use Database\Seeders\PlaceSeeder;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +20,7 @@ class CreatePlacesTable extends Migration
             $table->string('type');
             $table->timestamps();
         });
+        (new PlaceSeeder())->run();
     }
 
     /**

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        @include('loginform')
         <title>Добавить фото</title>
     </head>
     <div>

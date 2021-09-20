@@ -1,10 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\PlacesController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,17 +15,15 @@ use App\Http\Controllers\UsersController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('users', [UsersController::class, 'index'])->name('users.index');
-Route::get('places', [PlacesController::class, 'index'])->name('places.index');
-Route::get('rating', [PlacesController::class, 'ratingIndex'])->name('rating.index');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::post('form', [UsersController::class, 'sendForm'])->name('form.send');
+Route::get('/', [PlacesController::class, 'index'])->name('places.index');
+Route::get('rating', [PlacesController::class, 'ratingIndex'])->name('rating.index');
+Route::get('images/{image}/download', [ImagesController::class, 'download'])->name('images.download');
 
 Route::resource('images', ImagesController::class)->except('index', 'edit', 'update');
-Route::get('images/{image}/download', [ImagesController::class, 'download'])->name('images.download');
 
 Route::view('form', 'form')->name('form');
 
@@ -52,6 +49,7 @@ Route::group([
     Route::post('add', [PlacesController::class, 'addPlace'])->name('.add');
     });
 
-    Route::get('{id}', [PlacesController::class, 'place'])->name('.id');
+    Route::get('{id}', [PlacesController::class, 'place'])->name('id');
 });
 
+require __DIR__.'/auth.php';

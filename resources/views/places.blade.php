@@ -5,6 +5,9 @@
         <title>Все места</title>
     </head>
     <div>
+        <div>
+            @include('loginform')
+        </div>
         @include('menu')
         <body>
             <ul>

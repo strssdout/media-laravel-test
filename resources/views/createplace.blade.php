@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Все места</title>
+        @include('loginform')
     </head>
     <div>
         @include('menu')
@@ -21,10 +21,6 @@
             @enderror
             <br>
             <button type="submit">Send</button>
-            <!-- <input type="file" name="image" id="" class="@error('image') is-invalid @enderror">
-            @error('image')
-                <div class="alert alert-danger"><font size="5" color="red">{{ $message }}</font></div>
-            @enderror -->
         </form>
     </div>
 </html>
